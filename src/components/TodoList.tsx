@@ -10,7 +10,7 @@ export class TodoList extends React.Component<ITodoListProps> {
   public render(): JSX.Element {
     return (
       <ul>
-        {this.props.items.map(item => <TodoItem key={item.text} item={item}/>)}
+        {this.props.items.map((item, index) => <TodoItem key={item.text} index={index} item={item}/>)}
       </ul>
     );
   }

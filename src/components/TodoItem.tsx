@@ -1,8 +1,10 @@
 import React from 'react';
 import { ITodoItem } from '../models/ITodoItem';
+import { toggleTodo } from '../store';
 
 interface ITodoItemProps {
   item: ITodoItem;
+  index: number;
 }
 
 export class TodoItem extends React.Component<ITodoItemProps> {
@@ -11,12 +13,16 @@ export class TodoItem extends React.Component<ITodoItemProps> {
       return <strong>done</strong>;
     }
 
-    return <i>in progress</i>;
+    return <i>new</i>;
+  }
+
+  public toggleButtonClickHandler(index: number) {
+    toggleTodo(index);
   }
 
   public render(): JSX.Element {
     return (
-    <li>{this.props.item.text} <small>{this.getStatusLabel()}</small></li>
+    <li>{this.props.item.text} <small>{this.getStatusLabel()}</small> <button onClick={() => this.toggleButtonClickHandler(this.props.index)}>Toggle</button></li>
     );
   }
 }
